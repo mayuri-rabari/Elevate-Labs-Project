@@ -1,0 +1,260 @@
+#  Task 2: Phishing Email Analysis
+# Additional Interview Preparation
+
+> **1. What is phishing?**  
+> A type of cyberattack where attackers impersonate legitimate entities to steal sensitive information.
+
+> **2. What is email spoofing?**  
+> Forging the sender’s address to look like a trusted contact.
+
+> **3. Why are phishing emails dangerous?**  
+> They can trick users into giving up credentials, bank info, or downloading malware.
+
+> **4. What to do if you get one?**  
+> Don’t click. Report it and delete it. If you clicked, change your passwords immediately.
+>
+5. How can you verify the sender’s authenticity?
+Check the full sender email address (support@msupdate.net) and domain legitimacy — it should match the official domain (e.g., @microsoft.com), not a fake like msupdate.net.
+
+6. What tools can analyze email headers?
+Tools like MXToolbox, Google Message Header Analyzer, and Microsoft Header Analyzer help identify spoofing and trace the email’s real source.
+
+7. What actions should be taken on suspected phishing emails?
+Do not click any links, report the email, mark it as phishing, and delete it from your inbox.
+
+8. How do attackers use social engineering in phishing?
+They create urgency or fear (e.g., "Your account is suspended") to trick users into clicking malicious links or giving up sensitive information.
+
+#  – Task 3
+# Vulnerability Assessment Report Using OpenVAS
+
+# Interview Preparation – OpenVAS Vulnerability Assessment
+
+---
+
+## 1. What is vulnerability scanning?
+
+**Answer:**  
+Vulnerability scanning is the **automated process** of identifying known security flaws in systems, applications, or networks by comparing their configurations, versions, and ports against known vulnerability databases like CVE, NVT, or OVAL.
+
+---
+
+## 2. What is the difference between vulnerability scanning and penetration testing?
+
+| Feature               | Vulnerability Scanning       | Penetration Testing          |
+|------------------------|-----------------------------|------------------------------|
+| Approach               | Automated                    | Manual or Hybrid             |
+| Purpose                | Detect known vulnerabilities | Exploit vulnerabilities      |
+| Tools                  | OpenVAS, Nessus              | Metasploit, Burp Suite       |
+| Risk Level             | Low                          | Medium to High               |
+| Depth                  | Surface-level                | Deep, context-aware testing  |
+
+---
+
+## 3. What are some common vulnerabilities in personal computers?
+
+- Outdated software or OS versions  
+- Weak or default passwords  
+- Open or unused ports  
+- Unpatched services (e.g., SMB, SSH)  
+- Insecure firewall settings  
+- Running vulnerable services like Telnet or SMBv1  
+
+---
+
+## 4. How does OpenVAS detect vulnerabilities?
+
+**Answer:**  
+OpenVAS detects vulnerabilities by:
+- Performing **port scanning** to find open services
+- Using **banner grabbing** to detect software versions
+- Comparing results with its **Network Vulnerability Tests (NVT)** feed
+- Matching known CVEs with services found on the host
+
+---
+
+## 5. What is CVSS?
+
+**Answer:**  
+CVSS (Common Vulnerability Scoring System) is a standardized metric system used to assign **severity scores** (0–10) to vulnerabilities.
+
+| Score Range | Severity |
+|-------------|----------|
+| 0.0–3.9     | Low      |
+| 4.0–6.9     | Medium   |
+| 7.0–8.9     | High     |
+| 9.0–10.0    | Critical |
+
+---
+
+## 6. How often should vulnerability scans be performed?
+
+- At least **monthly** for regular systems  
+- **Weekly or continuous** for critical infrastructure  
+- **After major system changes**, updates, or deployments  
+
+---
+
+## 7. What is a false positive in vulnerability scanning?
+
+**Answer:**  
+A **false positive** is when a scanner reports a vulnerability that does **not actually exist** or is **not exploitable** in the given context.
+
+---
+
+## 8. How do you prioritize vulnerabilities?
+
+**Answer:**  
+Use the following criteria:
+- **CVSS Score** (Critical vulnerabilities first)
+- **Exploit availability** (Is there a public exploit or POC?)
+- **Asset criticality** (e.g., production server vs test PC)
+- **Exposure level** (internal vs internet-facing)
+- **Functionality impact** (can it disrupt operations?)
+
+---
+
+## 9. What are the limitations of OpenVAS?
+
+- May generate false positives or miss zero-day vulnerabilities  
+- Can be time-consuming depending on system complexity  
+- Requires frequent NVT feed updates for accuracy  
+- Needs careful tuning for optimal performance in large networks  
+
+---
+
+## 10. How would you secure your system after a scan?
+
+**Answer:**
+- Apply patches and software updates
+- Disable unused services and ports
+- Remove vulnerable packages (e.g., SMBv1, Telnet)
+- Configure and enable the firewall
+- Regularly re-scan to monitor for new threats
+
+---
+
+# 🔥 Task 4: Setup and Use a Firewall on Windows 11
+
+
+# 🔐 Firewall Interview Questions & Answers  
+
+---
+
+## 1. What is a Firewall?
+
+A **firewall** is a hardware or software security system that acts as a barrier between trusted and untrusted networks. It monitors and filters **incoming and outgoing network traffic** based on defined security rules.
+
+- 🔒 It allows or blocks specific traffic to protect systems.
+- 🧱 It helps prevent unauthorized access to or from a private network.
+
+---
+
+## 2. What is the Difference Between Stateful and Stateless Firewalls?
+
+| Feature                 | Stateless Firewall                     | Stateful Firewall                         |
+|------------------------|----------------------------------------|--------------------------------------------|
+| **Connection Tracking**| ❌ Does not track connections           | ✅ Tracks active connections                |
+| **Packet Awareness**   | Inspects individual packets            | Inspects packets as part of a session      |
+| **Context Awareness**  | No context; each packet handled alone  | Aware of connection history and state      |
+| **Performance**        | Faster but less intelligent            | Slightly slower but more secure            |
+| **Security**           | Basic filtering                        | Advanced filtering based on behavior       |
+
+---
+
+## 3. What are Inbound and Outbound Rules?
+
+- **Inbound Rules**:  
+  Define what kind of **incoming traffic** is allowed or blocked.  
+  🔹 Example: Block port 23 to stop Telnet traffic from external systems.
+
+- **Outbound Rules**:  
+  Define what kind of **outgoing traffic** is allowed or blocked.  
+  🔹 Example: Block access to specific websites or IPs from internal users.
+
+---
+
+## 4. How Does UFW Simplify Firewall Management?
+
+**UFW (Uncomplicated Firewall)** is a command-line frontend for `iptables` on Linux systems. It simplifies complex firewall configurations using easy-to-understand commands.
+
+- ✅ Human-readable syntax
+- ✅ Easy to enable/disable services
+- ✅ Suitable for beginners
+
+📌 Examples:
+```bash
+sudo ufw enable
+sudo ufw allow 22/tcp
+sudo ufw deny 23
+
+## 5. Why Block Port 23 (Telnet)?
+
+Port 23 is used by the **Telnet** protocol, which is a legacy method for remote terminal connections.
+
+- ❌ Telnet sends **usernames and passwords in plaintext** over the network.
+- 🔓 It is **vulnerable to packet sniffing** and MITM attacks.
+- 🧠 Attackers use Telnet for:
+  - IoT botnets (e.g., Mirai)
+  - Exploiting default credentials
+- ✅ SSH (Secure Shell) over **port 22** is the modern, encrypted alternative.
+
+🔒 **Best Practice**: Block port 23 unless absolutely needed for legacy compatibility (and monitor it aggressively).
+
+---
+
+## 6. What Are Common Firewall Mistakes?
+
+| Mistake | Explanation |
+|--------|-------------|
+| **1. Allowing All Traffic** | Using `allow any` rules defeats the purpose of a firewall. |
+| **2. Misconfigured Priorities** | Incorrect rule ordering can allow unintended access. |
+| **3. Ignoring Outbound Rules** | Only configuring inbound filters leaves data exfiltration wide open. |
+| **4. Not Blocking Default Services** | Leaving ports like 23, 21, or 3389 open with no authentication. |
+| **5. Poor Documentation** | Not keeping track of changes can lead to audit and troubleshooting failures. |
+
+🔥 Real-world breaches often involve **misconfigured firewalls** or lack of **segmentation**.
+
+---
+
+## 7. How Does a Firewall Improve Network Security?
+
+A firewall is your **first line of defense** for controlling how devices communicate.
+
+### 🔐 Key Security Benefits:
+
+- **Access Control**: Define exactly who can talk to what service on what port.
+- **Least Privilege Enforcement**: Only necessary traffic is allowed.
+- **DDoS & Botnet Mitigation**: Blocks suspicious IPs and malformed traffic.
+- **Internal Segmentation**: Prevents lateral movement inside the network.
+- **Traffic Monitoring**: Logs help detect unauthorized attempts or insider threats.
+
+➡️ Firewalls are often used alongside:
+- IDS/IPS
+- VPNs
+- Proxies
+- Load balancers
+
+---
+
+## 8. What is NAT in Firewalls?
+
+**NAT (Network Address Translation)** is used to **map private internal IP addresses** to a **public IP** for outbound or inbound connections.
+
+### 🔁 Types of NAT:
+
+| Type         | Use Case |
+|--------------|----------|
+| **SNAT**     | Source NAT - used for **outbound** traffic |
+| **DNAT**     | Destination NAT - used for **inbound** traffic |
+| **PAT**      | Port Address Translation - maps many private IPs to one public IP using different ports |
+
+### 🛡️ Why It Matters in Firewalls:
+
+- NAT hides internal network structure
+- NAT provides basic **obfuscation/security**
+- Used heavily in **home routers**, **enterprise firewalls**, and **cloud gateways**
+
+📌 Firewalls with NAT are often called **stateful firewalls** with NAT capabilities.
+
+---
